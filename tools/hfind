@@ -1,0 +1,20 @@
+#!/bin/bash
+declare -a filearray
+
+FOUND=`find -name "$1"`
+if [ ! "$FOUND" ];then
+echo "find nothing..."
+else
+i=1
+for p in $FOUND
+do
+    echo "$i $p"
+    i=`expr $i + 1`
+    filearray[$i]=$p
+done
+read index
+finalfile=${filearray[`expr $index + 1`]}
+echo $finalfile
+vi $finalfile
+fi
+
